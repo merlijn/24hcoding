@@ -1,0 +1,25 @@
+contract Borrower {
+
+    bytes email;
+    uint8 credit_score;
+    uint amount;
+    address[] contracts;
+    
+    // Create a new Lender contract
+    function Lender(bytes _email, uint8 _credit_score, uint _amount) {
+        credit_score = _credit_score;
+        email = _email;
+        amount = _amount;
+    }
+    
+    // Add a lending contract
+    function createLendingContract(address borrower, uint _borrow_amount) {
+        // TODO add contract to contracts
+    }
+    
+    function getState() constant returns (bytes _state_email, uint8 _state_credit_score, uint _state_amount) {
+        _state_email = email;
+        _state_credit_score = credit_score;
+        _state_amount = amount;
+    }
+}

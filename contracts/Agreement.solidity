@@ -1,0 +1,20 @@
+contract Agreement {
+    
+    address borrower;
+    address lender;
+    uint amount;
+    uint amount_left;
+    
+    function Agreement(address _borrower, address _lender, uint _amount) {
+        borrower = _borrower;
+        lender = _lender;
+        amount = _amount;
+        amount_left = amount;
+    }
+    
+    function payoff(uint payoff_amount) constant returns (uint _amount_left) {
+        
+        amount_left = amount_left - payoff_amount;
+        _amount_left = amount_left;
+    }
+}
