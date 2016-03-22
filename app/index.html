@@ -59,7 +59,7 @@
         <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
         <h2>{{ul.selected.name}}</h2>
         {{ ul.selected.content }}
-        
+
         <div ng-switch on="ul.selected.name">
           <div ng-switch-when="Marry Borrows"><p/>
             <form name="borrowerForm">
@@ -78,8 +78,18 @@
             </form>  
           </div> <!-- Marry Borrows -->
           <div ng-switch-when="John Lender">
+            <form name="lenderForm">
+              <md-input-container class="md-block" flex-gt-sm ng-repeat="q in ul.selected.questions">
+                <label>{{ q.text }}</label>
+                <md-select ng-model="user.state">
+                  <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                    {{state.abbrev}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </form>
           </div>
-          <div ng-switch-default>Don't know the guy.</div>
+          <div ng-switch-default><br/>Don't know the guy.</div>
         </div>
     </md-content>
 

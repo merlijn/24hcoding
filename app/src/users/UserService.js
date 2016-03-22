@@ -17,7 +17,12 @@
       {
         name: 'John Lender',
         avatar: 'svg-2',
-        content: "I invest in people's happiness."
+        content: "I invest in people's happiness.",
+        questions: [
+          {no: 1, text: "aha", score: 3},
+          {no: 2, text: "baha", score: 5},
+          {no: 3, text: "muha", score: 10}
+        ]
       },
       {
         name: 'Marry Borrows',
