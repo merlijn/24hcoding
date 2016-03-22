@@ -134,9 +134,9 @@
         avatar: 'svg-1',
         content: "I'd like to renovate my kids' room and make them happy.",
         email: "marry@borrows.com",
-        mortgate: 200000,
+        mortgate: 100000,
         other_loans: 1000,
-        montly_salary: 3500,
+        yearly_income: 40000,
         credit_score: 5,
         borrow_amount: 2000,
         spare_monthly: 150
