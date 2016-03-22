@@ -87,7 +87,7 @@
     }
 
     function borrowerSubmit() {
-        $log.debug('inside borrowerSubmit')
+        $log.debug('inside borrowerSubmit. selected=' + self.selected.name)
 
     }
 
