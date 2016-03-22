@@ -3,7 +3,7 @@
   angular
        .module('users')
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$http', '$q',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$http', '$mdToast',
           UserController
        ]);
 
@@ -14,13 +14,8 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $http) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $http, $mdToast) {
     var self = this;
-//    $http.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type';
-//    $http.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
-//    $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
-//    console.log($http.defaults.headers);
 
     var Web3 = require('web3');
     var web3 = new Web3();
@@ -103,6 +98,45 @@
         var borrower = self.selected
         $log.debug('inside borrowerSubmit. borrower=' + borrower.name)
 
+
+///////////////////////////////////////////////
+// Display the Toast message
+        var last = {
+              bottom: false,
+              top: true,
+              left: false,
+              right: true
+            };
+
+        var toastPosition = angular.extend({},last);
+        var getToastPosition = function() {
+            sanitizePosition();
+            return Object.keys(toastPosition)
+              .filter(function(pos) { return toastPosition[pos]; })
+              .join(' ');
+          };
+        function sanitizePosition() {
+            var current = toastPosition;
+            if ( current.bottom && last.top ) current.top = false;
+            if ( current.top && last.bottom ) current.bottom = false;
+            if ( current.right && last.left ) current.left = false;
+            if ( current.left && last.right ) current.right = false;
+            last = angular.extend({},current);
+          }
+        var showSimpleToast = function() {
+              var pinTo = getToastPosition();
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Mary Borrower contract is created! Yay, we have found a lender!... Aggreement is done....')
+                  .position(pinTo )
+                  .hideDelay(3000)
+              );
+            };
+////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+// Send to blockchain
         var _email = borrower.email;
         var _credit_score = borrower.credit_score;
         var _amount = borrower.borrow_amount;
@@ -119,9 +153,13 @@
            console.log(e, contract);
            if (typeof contract.address != 'undefined') {
                 console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                alert('Borrower is successfully created!');
+                showSimpleToast();
+//                alert('Borrower is successfully created!');
            }
         })
+///////////////////////////////////////////////////////
+
+
     }
 
   }
