@@ -22,6 +22,7 @@
     self.selectUser   = selectUser;
     self.toggleList   = toggleUsersList;
     self.makeContact  = makeContact;
+    self.borrowerSubmit = borrowerSubmit;
 
     // Load all registered users
 
@@ -83,6 +84,11 @@
             $mdBottomSheet.hide(action);
           };
         }
+    }
+
+    function borrowerSubmit() {
+        $log.debug('inside borrowerSubmit')
+
     }
 
   }
