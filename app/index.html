@@ -75,6 +75,18 @@
                   <input ng-model="ul.selected.credit_score">
                 </md-input-container>
               </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>How much would you like to borrow?</label>
+                  <input ng-model="ul.selected.borrow_amount | currency:'€'">
+                </md-input-container>
+              </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>How much can you spare per month?</label>
+                  <input ng-model="ul.selected.spare_monthly | currency:'€'">
+                </md-input-container>
+              </div>
               <md-button class="md-raised md-primary" ng-click="ul.borrowerSubmit()">Ask for a loan</md-button>
             </form>  
           </div> <!-- Marry Borrows -->

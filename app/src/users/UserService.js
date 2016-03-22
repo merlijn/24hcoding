@@ -73,7 +73,9 @@
         avatar: 'svg-1',
         content: "I'd like to renovate my kids' room and make them happy.",
         email: "marry@borrows.com",
-        credit_score: 5
+        credit_score: 5,
+        borrow_amount: 2000,
+        spare_monthly: 150
       },
       {
         name: 'Inge Callman',
