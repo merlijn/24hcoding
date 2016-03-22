@@ -72,31 +72,31 @@
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Current mortgate height</label>
-                  <input ng-model="ul.selected.mortgate | currency:'€'">
+                  <input ng-model="ul.selected.mortgate">
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Amount of other outstaning loans</label>
-                  <input ng-model="ul.selected.other_loans | currency:'€'">
+                  <input ng-model="ul.selected.other_loans">
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Yearly income</label>
-                  <input ng-model="ul.selected.yearly_income | currency:'€'">
+                  <input ng-model="ul.selected.yearly_income">
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>How much would you like to borrow?</label>
-                  <input ng-model="ul.selected.borrow_amount | currency:'€'">
+                  <input ng-model="ul.selected.borrow_amount">
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>How much can you spare per month?</label>
-                  <input ng-model="ul.selected.spare_monthly | currency:'€'">
+                  <input ng-model="ul.selected.spare_monthly">
                 </md-input-container>
               </div>
               <md-button class="md-raised md-primary" ng-click="ul.borrowerSubmit()">Ask for a loan</md-button>
