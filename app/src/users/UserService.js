@@ -136,7 +136,7 @@
         email: "marry@borrows.com",
         mortgate: 200000,
         other_loans: 1000,
-        Montly salary: 3500,
+        montly_salary: 3500,
         credit_score: 5,
         borrow_amount: 2000,
         spare_monthly: 150
