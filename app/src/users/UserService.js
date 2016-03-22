@@ -1,8 +1,8 @@
-(function() {
+(function(){
   'use strict';
 
   angular.module('users')
-         .service('userService', ['$q', '$http', UserService]);
+         .service('userService', ['$q', UserService]);
 
   /**
    * Users DataService
@@ -12,17 +12,7 @@
    * @returns {{loadAll: Function}}
    * @constructor
    */
-  function UserService($q, $http){
-
-    // initialized connection to ethereum node via json rpc
-    var Web3 = require('web3');
-    var web3 = new Web3();
-
-    web3.setProvider(new web3.providers.HttpProvider("http://104.154.21.38:8545"));
-
-    // web3.eth.defaultAccount = web3.eth.coinbase;
-
-
+  function UserService($q){
     var users = [
       {
         name: 'John Lender',
@@ -154,7 +144,7 @@
       {
         name: 'Inge Callman',
         avatar: 'svg-3',
-        content: "I work in the call center of the bank."
+        content: 'I work in the call center of the bank.'
       },
       {
         name: 'Lawrence Billman',
