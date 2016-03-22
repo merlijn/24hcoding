@@ -117,11 +117,10 @@
           <div ng-switch-when="Lawrence Billman">
             <h2>Money we've made:</h2>
               <md-divider></md-divider>
-              
                 <div ng-repeat='fee in ul.selected.fees' class="row">
                   <div flex layout='row' layout-padding layout-align="start center" >
-                    <div flex style="max-width:200px;">
-                      {{fee | currency}}
+                    <div flex style="max-width:600px;">
+                      {{fee.amount | currency}} from {{fee.borrower}} and {{fee.lender}}
                     </div>
                   </div>
                 </div>

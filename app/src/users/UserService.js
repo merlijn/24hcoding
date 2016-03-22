@@ -150,7 +150,7 @@
         name: 'Lawrence Billman',
         avatar: 'svg-4',
         content: "I'm responsible for billing in the bank.",
-        fees: [200, 150, 75]
+        fees: [{amount: 200, borrower: "Marry Borrows", lender: "John Lender"}]
       }
     ];
 
