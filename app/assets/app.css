@@ -22,7 +22,8 @@
   width: 36px;
 }
 
-md-toolbar {
+md-toolbar.md-whiteframe-z1 {
+  color: #FFFFFF;
   background-color: #FF6200;
 }
 

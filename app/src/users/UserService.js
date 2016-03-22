@@ -142,14 +142,15 @@
         spare_monthly: 150
       },
       {
-        name: 'Inge Callman',
+        name: 'Inge Florist',
         avatar: 'svg-3',
-        content: 'I work in the call center of the bank.'
+        content: 'I send flowers to borrowers that pay off their debts.'
       },
       {
         name: 'Lawrence Billman',
         avatar: 'svg-4',
-        content: "I'm responsible for billing in the bank."
+        content: "I'm responsible for billing in the bank.",
+        fees: [200, 150, 75]
       }
     ];
 

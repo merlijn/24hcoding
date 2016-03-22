@@ -114,6 +114,18 @@
               </md-input-container>
             </form>
           </div>
+          <div ng-switch-when="Lawrence Billman">
+            <h2>Money we've made:</h2>
+              <md-divider></md-divider>
+              
+                <div ng-repeat='fee in ul.selected.fees' class="row">
+                  <div flex layout='row' layout-padding layout-align="start center" >
+                    <div flex style="max-width:200px;">
+                      {{fee | currency}}
+                    </div>
+                  </div>
+                </div>
+          </div>
           <div ng-switch-default><br/>Don't know the guy.</div>
         </div>
     </md-content>
