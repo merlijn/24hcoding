@@ -15,14 +15,16 @@
   function UserService($q){
     var users = [
       {
-        name: 'Marry Borrows',
-        avatar: 'svg-1',
-        content: "I'd like to fulfil my dream and open a bakery."
-      },
-      {
         name: 'John Lender',
         avatar: 'svg-2',
         content: "I invest in people's happiness."
+      },
+      {
+        name: 'Marry Borrows',
+        avatar: 'svg-1',
+        content: "I'd like to renovate my kids' room and make them happy.",
+        email: "marry@borrows.com",
+        credit_score: 5
       },
       {
         name: 'Inge Callman',

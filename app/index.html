@@ -58,8 +58,30 @@
     <md-content flex id="content">
         <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
         <h2>{{ul.selected.name}}</h2>
-        <p>{{ul.selected.content}}</p>
-      </md-content>
+        {{ ul.selected.content }}
+        
+        <div ng-switch on="ul.selected.name">
+          <div ng-switch-when="Marry Borrows"><p/>
+            <form name="borrowerForm">
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Email Address</label>
+                  <input ng-model="ul.selected.email">
+                </md-input-container>
+              </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Credit Score</label>
+                  <input ng-model="ul.selected.credit_score">
+                </md-input-container>
+              </div>
+            </form>  
+          </div> <!-- Marry Borrows -->
+          <div ng-switch-when="John Lender">
+          </div>
+          <div ng-switch-default>Don't know the guy.</div>
+        </div>
+    </md-content>
 
   </div>
 
