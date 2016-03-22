@@ -14,8 +14,13 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q) {
     var self = this;
+
+    var Web3 = require('web3');
+    var web3 = new Web3();
+
+    console.log(web3);
 
     self.selected     = null;
     self.users        = [ ];
