@@ -22,6 +22,9 @@
   width: 36px;
 }
 
+md-toolbar {
+  background-color: #FF6200;
+}
 
 md-toolbar h3 {
   margin: auto;
@@ -41,7 +44,7 @@ md-icon.avatar {
 }
 
   md-list .md-button.selected {
-    color: #03a9f4;
+    color: #FF6200;
   }
 
 
