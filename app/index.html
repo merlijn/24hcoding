@@ -82,13 +82,12 @@
             <form name="lenderForm">
               <md-input-container class="md-block" flex-gt-sm ng-repeat="q in ul.selected.questions">
                 <label>{{ q.text }}</label>
-                <md-select ng-model="hallo-$index">
-                  <md-option ng-repeat="answer in q.answers" value="{{answer.answer}}">
-                    {{answer.answer}}
+                <md-select ng-model="h">
+                  <md-option ng-repeat="a in q.answers" value="{{a.answer}}">
+                    {{a.answer}}
                   </md-option>
                 </md-select>
               </md-input-container>
-              {{hallo-1}}
             </form>
           </div>
           <div ng-switch-default><br/>Don't know the guy.</div>
