@@ -1,0 +1,28 @@
+contract Lender {
+
+    uint id;
+    uint8 risk;
+    uint amount;
+    bytes email;
+    address[] contracts;
+    
+    // Create a new Lender contract
+    function Lender(uint8 _id, uint8 _risk, uint _amount, bytes _email) {
+        id = _id;
+        risk = _risk;
+        amount = _amount;
+        email = _email;
+    }
+    
+    // Add a lending contract
+    function createLendingContract(address borrower, uint _borrow_amount) {
+        // TODO add contract to contracts
+    }
+    
+    function getState() constant returns (uint _state_id, uint8 _state_risk, uint _state_amount, bytes _state_email) {
+        _state_id = id;
+        _state_risk = risk;
+        _state_amount = amount;
+        _state_email = email;
+    }
+}
