@@ -42,4 +42,4 @@ EXPOSE 8545
 EXPOSE 4000
 
 # Run geth
-CMD geth --rpc --rpcport "8545" --rpcaddr "0.0.0.0" --networkid 6421 --maxpeers=0 --nodiscover --datadir=/home/geth/ --mine --minerthreads 1 --genesis /home/geth/genesisFile.json --password /home/geth/account.pass --unlock=0 --gasprice "500" --rpcapi "db,eth,net,web3,personal" -gpomin "500" --gpomax "50000" console
+CMD geth --rpc --rpcport "8545" --rpcaddr "0.0.0.0" --rpccorsdomain --networkid 6421 --maxpeers=0 --nodiscover --datadir=/home/geth/ --mine --minerthreads 1 --genesis /home/geth/genesisFile.json --password /home/geth/account.pass --unlock=0 --gasprice "500" --rpcapi "db,eth,net,web3,personal" -gpomin "500" --gpomax "50000" console
