@@ -71,8 +71,20 @@
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Credit Score</label>
-                  <input ng-model="ul.selected.credit_score">
+                  <label>Current mortgate height</label>
+                  <input ng-model="ul.selected.mortgate | currency:'€'">
+                </md-input-container>
+              </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Amount of other outstaning loans</label>
+                  <input ng-model="ul.selected.other_loans | currency:'€'">
+                </md-input-container>
+              </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Yearly income</label>
+                  <input ng-model="ul.selected.yearly_income | currency:'€'">
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
@@ -88,7 +100,7 @@
                 </md-input-container>
               </div>
               <md-button class="md-raised md-primary" ng-click="ul.borrowerSubmit()">Ask for a loan</md-button>
-            </form>  
+            </form>
           </div> <!-- Marry Borrows -->
           <div ng-switch-when="John Lender">
             <form name="lenderForm">
