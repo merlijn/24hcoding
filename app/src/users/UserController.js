@@ -3,7 +3,7 @@
   angular
        .module('users')
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
           UserController
        ]);
 
@@ -14,7 +14,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $timeout, $log ) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log) {
     var self = this;
 
     self.selected     = null;
@@ -57,7 +57,7 @@
     function makeContact(selectedUser) {
 
         $mdBottomSheet.show({
-          controllerAs  : "vm",
+          controllerAs  : "cp",
           templateUrl   : './src/users/view/contactSheet.html',
           controller    : [ '$mdBottomSheet', ContactSheetController],
           parent        : angular.element(document.getElementById('content'))
@@ -70,7 +70,7 @@
          */
         function ContactSheetController( $mdBottomSheet ) {
           this.user = selectedUser;
-          this.items = [
+          this.actions = [
             { name: 'Phone'       , icon: 'phone'       , icon_url: 'assets/svg/phone.svg'},
             { name: 'Twitter'     , icon: 'twitter'     , icon_url: 'assets/svg/twitter.svg'},
             { name: 'Google+'     , icon: 'google_plus' , icon_url: 'assets/svg/google_plus.svg'},
