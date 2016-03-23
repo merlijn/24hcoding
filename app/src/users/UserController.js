@@ -160,6 +160,7 @@
 function lenderSubmit() {
 var lender = self.selected
   $log.debug('inside lenderSubmit. lender=' + lender.name)
+  
 }
 
   }
