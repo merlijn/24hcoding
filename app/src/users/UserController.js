@@ -97,8 +97,6 @@
     function borrowerSubmit() {
         var borrower = self.selected
         $log.debug('inside borrowerSubmit. borrower=' + borrower.name)
-
-
 ///////////////////////////////////////////////
 // Display the Toast message
         var last = {
@@ -157,17 +155,12 @@
 //                alert('Borrower is successfully created!');
            }
         })
-///////////////////////////////////////////////////////
-
-
-        // getAllLenders
-        // match one lender to borrower
-        // create agreement
-
-
-
     }
 
-  }
+function lenderSubmit() {
+var lender = self.selected
+  $log.debug('inside lenderSubmit. lender=' + lender.name)
+}
 
+  }
 })();
