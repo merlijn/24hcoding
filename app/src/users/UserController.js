@@ -17,6 +17,8 @@
   function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $http, $mdToast) {
     var self = this;
 
+//////////////////////////////////////////////////////////
+// connect to blockchain
     var Web3 = require('web3');
     var web3 = new Web3();
 
@@ -24,6 +26,10 @@
 
     web3.setProvider(new web3.providers.HttpProvider("http://104.154.21.38:8545"));
     web3.eth.defaultAccount = web3.eth.coinbase;
+
+var ingContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"_amount","type":"uint256"},{"name":"_fee","type":"uint256"},{"name":"_borrower","type":"bytes"},{"name":"_lender","type":"bytes"}],"name":"createAgreement","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"nrOfAgreements","outputs":[{"name":"_nrOfAgreements","type":"uint256"}],"type":"function"}]);
+var ing = ingContract.at("0x37e423b96ebeafa61bf0d839cf03248309ae0419");
+/////////////////////////////////////////////////////////////
 
     self.selected     = null;
     self.users        = [ ];
@@ -58,6 +64,15 @@
      */
     function selectUser ( user ) {
       self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+      if (self.selected.name == 'Lawrence Billman') {
+          self.selected.fees = [{amount: 500, borrower: "Marry Borrows", lender: "John Lender"}]
+            var fees;
+            ing.nrOfAgreements(function(e, _fees) {
+                $log.info('Retrieved nr of agreements:' + _fees);
+                fees = _fees;
+            })
+//          self.selected.fees = fees;
+      }
     }
 
     /**
@@ -96,7 +111,9 @@
 
     function borrowerSubmit() {
         var borrower = self.selected
-        $log.debug('inside borrowerSubmit. borrower=' + borrower.name)
+        $log.debug('inside borrowerSubmit. borrower=' + borrower.name + ' email:' + borrower.email)
+
+
 ///////////////////////////////////////////////
 // Display the Toast message
         var last = {
@@ -135,33 +152,60 @@
 
 ///////////////////////////////////////////////////
 // Send to blockchain
-        var _email = borrower.email;
-        var _credit_score = borrower.credit_score;
-        var _amount = borrower.borrow_amount;
-        var borrowerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"getState","outputs":[{"name":"_state_email","type":"bytes"},{"name":"_state_credit_score","type":"uint8"},{"name":"_state_amount","type":"uint256"}],"type":"function"},{"inputs":[{"name":"_email","type":"bytes"},{"name":"_credit_score","type":"uint8"},{"name":"_amount","type":"uint256"}],"type":"constructor"}]);
-        var borrower = borrowerContract.new(
-          _email,
-          _credit_score,
-          _amount,
-          {
-            from: web3.eth.accounts[0],
-            data: '60606040526040516102ba3803806102ba833981016040528080518201919060200180519060200190919080519060200190919050505b81600160006101000a81548160ff021916908302179055508260006000509080519060200190828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061009d57805160ff19168380011785556100ce565b828001600101855582156100ce579182015b828111156100cd5782518260005055916020019190600101906100af565b5b5090506100f991906100db565b808211156100f557600081815060009055506001016100db565b5090565b5050806002600050819055505b5050506101a3806101176000396000f360606040526000357c0100000000000000000000000000000000000000000000000000000000900480631865c57d1461003957610037565b005b61004660048050506100c5565b60405180806020018460ff1681526020018381526020018281038252858181518152602001915080519060200190808383829060006004602084601f0104600f02600301f150905090810190601f1680156100b55780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b60206040519081016040528060008152602001506000600060006000508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101765780601f1061014b57610100808354040283529160200191610176565b820191906000526020600020905b81548152906001019060200180831161015957829003601f168201915b505050505092508250600160009054906101000a900460ff1691508150600260005054905080505b90919256',
-            gas: 3000000
-          }, function(e, contract){
-           console.log(e, contract);
-           if (typeof contract.address != 'undefined') {
-                console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                showSimpleToast();
-//                alert('Borrower is successfully created!');
-           }
-        })
+//        var _email = borrower.email;
+//        var _credit_score = borrower.credit_score;
+//        var _amount = borrower.borrow_amount;
+//        var borrowerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"getState","outputs":[{"name":"_state_email","type":"bytes"},{"name":"_state_credit_score","type":"uint8"},{"name":"_state_amount","type":"uint256"}],"type":"function"},{"inputs":[{"name":"_email","type":"bytes"},{"name":"_credit_score","type":"uint8"},{"name":"_amount","type":"uint256"}],"type":"constructor"}]);
+//        var borrower = borrowerContract.new(
+//          _email,
+//          _credit_score,
+//          _amount,
+//          {
+//            from: web3.eth.accounts[0],
+//            data: '60606040526040516102ba3803806102ba833981016040528080518201919060200180519060200190919080519060200190919050505b81600160006101000a81548160ff021916908302179055508260006000509080519060200190828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061009d57805160ff19168380011785556100ce565b828001600101855582156100ce579182015b828111156100cd5782518260005055916020019190600101906100af565b5b5090506100f991906100db565b808211156100f557600081815060009055506001016100db565b5090565b5050806002600050819055505b5050506101a3806101176000396000f360606040526000357c0100000000000000000000000000000000000000000000000000000000900480631865c57d1461003957610037565b005b61004660048050506100c5565b60405180806020018460ff1681526020018381526020018281038252858181518152602001915080519060200190808383829060006004602084601f0104600f02600301f150905090810190601f1680156100b55780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b60206040519081016040528060008152602001506000600060006000508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101765780601f1061014b57610100808354040283529160200191610176565b820191906000526020600020905b81548152906001019060200180831161015957829003601f168201915b505050505092508250600160009054906101000a900460ff1691508150600260005054905080505b90919256',
+//            gas: 3000000
+//          }, function(e, contract){
+//           console.log(e, contract);
+//           if (typeof contract.address != 'undefined') {
+//                console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+//                showSimpleToast();
+//           }
+//        })
+///////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////
+// AWESOME MATCHING ALGORITHM
+
+        var matchedLender; // Store the matched lender here
+
+        // get All registered lenders
+        $log.info('All registered lenders: ')
+        for(var i = 0; i < allLenders.length; i++) {
+            var lender = allLenders[i];
+            $log.info(lender.name + ' email:' + lender.email + ' with tolerance to risk:' + lender.toleranceToRisk);
+            if (borrower.credit_score == lender.toleranceToRisk) {
+                // match one lender to borrower
+                matchedLender = lender;
+            }
+        }
+        $log.info('Matched one lender : ' + matchedLender.name);
+        $log.info('Creating the contract...');
+
+        var ingFee = 100;
+////////////////////////////////////////////////////////////
+// create agreement with the matchedLender
+        ing.createAgreement(borrower.borrow_amount, ingFee, borrower.email, lender.email, function() {
+            $log.info("Agreement is successfully created...")
+        });
+ //////////////////////////////////////////////////////////// END CREATE AGREEMENT
+
+////////////////////////////////////////////////////////// END MATCHING ALGORITHM
     }
 
-function lenderSubmit() {
-var lender = self.selected
-  $log.debug('inside lenderSubmit. lender=' + lender.name)
-  
-}
+    function lenderSubmit() {
+        var lender = self.selected
+        $log.debug('inside lenderSubmit. lender=' + lender.name)
+    }
 
   }
 })();

@@ -18,6 +18,8 @@
         name: 'John Lender',
         avatar: 'svg-2',
         content: "I invest in people's happiness.",
+        email: "john@lender.com",
+        toleranceToRisk: "5",
         questions: [
           {no: 1, text: "How would your best friend describe you as a risk taker?", answers: [
             {answer: "A real gambler", score: 4},
