@@ -160,6 +160,12 @@
 ///////////////////////////////////////////////////////
 
 
+        // getAllLenders
+        // match one lender to borrower
+        // create agreement
+
+
+
     }
 
   }
